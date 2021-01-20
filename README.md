@@ -1,5 +1,9 @@
 # 使用方式
 
+
+## 社区版   分支：v3
+## 收费版本 分支：v2
+
 查看cookie 到cookie处修改
 ![image](https://github.com/learningtheory/gitlab_crawl/blob/feat_init/images/WechatIMG12.png)
 
