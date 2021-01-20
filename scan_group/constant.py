@@ -1,5 +1,5 @@
-GITLAB_INDEX = 'https://domin'
+GITLAB_INDEX = 'http://domain'
 
-GITLAB_GROUP_INDEX = f'{GITLAB_INDEX}/dashboard/groups'
+GITLAB_GROUP_INDEX = f'{GITLAB_INDEX}/explore/groups'
 
-PROJECT_INDEX = 'https://domin/{}'
+PROJECT_INDEX = 'http://domain/{}'

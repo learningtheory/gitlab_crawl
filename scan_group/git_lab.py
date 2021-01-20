@@ -8,7 +8,7 @@ from scan_group.constant import GITLAB_GROUP_INDEX, PROJECT_INDEX
 
 
 class GroupCrawl:
-    # 所属组首页
+    # 所属组首页ls
     index_url = GITLAB_GROUP_INDEX
 
     @classmethod
@@ -21,9 +21,9 @@ class GroupCrawl:
         if rq.status_code == 200:
             jquery_txt = pq(rq.text)
             group_urls = []
-            group_names = jquery_txt('.group-name')
+            group_names = jquery_txt('h4')
             for i in group_names:
-                group_urls.append(pq(i).attr('href'))
+                group_urls.append(pq(i)('a').attr('href'))
             return set(group_urls)
         else:
             raise Exception(f'GroupCrawl get_group_list status {rq.status_code}')
@@ -43,7 +43,7 @@ class ProjectCrawl:
         rq = session.get(cls.index_url.format(group_name))
         if rq.status_code == 200:
             jquery_txt = pq(rq.text)
-            project_names = jquery_txt('.project-full-name')
+            project_names = jquery_txt('.project-name')
             for i in project_names:
                 pg_names.append(pq(i).text().replace(' / ', '/'))
             return pg_names
@@ -132,6 +132,8 @@ class GitLabSource:
         http_git = http_git.replace('.git', '/repository/archive.zip')
         split = http_git.split('/')
         name = f"{split[-3]}.zip"
+
+        print(http_git)
 
         path = os.path.join(os.getcwd(), split[-4])
         if not os.path.exists(path):
